@@ -1,14 +1,11 @@
 from flask import render_template, request, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db
-from app.models import user_models
-from ..models.user_models import User 
+from app.models.userModels import User 
 
 @app.route('/')
 def home():
-    # return redirect(url_for('login')) 
     return redirect('/login')
-    # return render_template('login.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -36,13 +33,11 @@ def login():
         if not user or not user.verify_password(pwd):
             return redirect(url_for('login'))        
 
-        print('NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN')
         login_user(user)
-        print('OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO')
-        # return redirect(url_for('home'))
-        return render_template('home.html')
+        return redirect(url_for('/listUsers')) 
+        #return redirect("/listUsers")
+        #return render_template('home.html')
     else:
-        print('PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP')
         return render_template('login.html')
 
 
