@@ -21,10 +21,17 @@
               <a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Início</a>
               <a class="nav-link" href="{{url_for('login')}}">Login</a>
               <a class="nav-link" href="{{url_for('register')}}">Registro</a>
+              <a class="nav-link" href="{{url_for('logout')}}">Sair</a>
             </div>
           </div>
         </div>
       </nav>
+      {% if current_user.is_authenticated %}
+      <div>
+          <h1>{{ current_user.name }}</h1>
+      </div>
+      {% endif %}   
+     
   {% block conteudo %}
   {% endblock conteudo %}  
 
