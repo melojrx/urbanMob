@@ -1,4 +1,4 @@
-from flask import Blueprint, Flask, redirect, render_template, url_for
+from flask import Blueprint, Flask, redirect, url_for
 from flask_login import LoginManager
 
 
@@ -19,7 +19,4 @@ app.register_blueprint(public)
 app.register_blueprint(login_bp)
 app.register_blueprint(user_bp)
 print(list(app.url_map.iter_rules()))
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:postgres@localhost/postgres'
-app.config['SECRET_KEY'] = 'secret'
 
