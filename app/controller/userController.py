@@ -1,6 +1,6 @@
 from flask import render_template
 from ..blueprints.userRout import user_bp
-from .models.userModels import User
+from ..models.userModel import User
 
 @user_bp.route('/listar', methods=['GET', 'POST'])
 def listUsers():

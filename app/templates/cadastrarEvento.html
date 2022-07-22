@@ -1,0 +1,14 @@
+<form class="form-inline" method="POST" action="{{ url_for('evento.cadastrar') }}">
+    <div class="form-group">
+      <div class="input-group">
+          <span class="input-group-addon">Selecione</span>
+              <select name="categoria" class="selectpicker form-control">
+                {% for cat in listCategoria %}
+                <option value="{{ cat }}">{{ cat.txtCategoria }}</option>
+                {% endfor %}
+              </select>
+      </div>
+      <button type="submit" class="btn btn-default">Go</button>
+    </div>
+  </form>
+  
