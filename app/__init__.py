@@ -1,5 +1,6 @@
-from flask import Blueprint, Flask, redirect, url_for
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
+from flask import Blueprint, Flask, redirect, url_for
 
 
 public = Blueprint('public', __name__)
@@ -9,6 +10,7 @@ def home():
 
 
 app = Flask(__name__)
+Bootstrap(app)
 
 login_manager = LoginManager(app)
 
