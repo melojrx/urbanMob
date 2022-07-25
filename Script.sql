@@ -30,6 +30,14 @@ CREATE SEQUENCE cidade.categoria_seq
   START 1
   CACHE 1;
 
+  
+  CREATE SEQUENCE cidade.evento_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+
 -- ################
 -- #    TABLES    #
 -- ################
@@ -59,6 +67,16 @@ CREATE TABLE cidade.tb_subcategoria_sub (
 	CONSTRAINT subcategoria_pkey PRIMARY KEY (id_subcategoria_sub)
 );
 ALTER TABLE cidade.tb_subcategoria_sub ADD CONSTRAINT categoria_fkey FOREIGN KEY (id_categoria_sub) REFERENCES cidade.tb_categoria_cat (id_categoria_cat);
+
+CREATE TABLE cidade.tb_evento_eve (
+	id_evento_eve integer NOT NULL DEFAULT nextval('cidade.evento_seq'::regclass),
+  	id_subcategoria_eve integer NOT NULL,
+	txt_problema_eve varchar(1000) NOT NULL,
+	dat_inicio_eve timestamp without time zone NOT null default now(),
+	dat_fim_eve timestamp without time zone default null,
+	CONSTRAINT evento_pkey PRIMARY KEY (id_evento_eve)
+);
+ALTER TABLE cidade.tb_evento_eve ADD CONSTRAINT subcategoria_fkey FOREIGN KEY (id_subcategoria_eve) REFERENCES cidade.tb_subcategoria_sub (id_subcategoria_sub);
 
 -- ################
 -- #    INSERTS   #
