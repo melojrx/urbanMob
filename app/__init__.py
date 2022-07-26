@@ -1,5 +1,6 @@
-from flask import Blueprint, Flask, redirect, url_for
 from flask_login import LoginManager
+from flask_bootstrap import Bootstrap
+from flask import Blueprint, Flask, redirect, url_for
 
 
 public = Blueprint('public', __name__)
@@ -9,14 +10,17 @@ def home():
 
 
 app = Flask(__name__)
+Bootstrap(app)
 
 login_manager = LoginManager(app)
 
-from .blueprints.loginRouts import login_bp
+from .blueprints.loginRout import login_bp
 from .blueprints.userRout import user_bp
+from .blueprints.eventoRout import evento_bp
 
 app.register_blueprint(public)
 app.register_blueprint(login_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(evento_bp)
 print(list(app.url_map.iter_rules()))
 

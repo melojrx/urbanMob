@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<form class="form-inline" method="POST" action="{{ url_for('evento.cadastrar') }}">
+
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">Categoria: </span>
+                <select name="categoria" id="categoria" class="selectpicker form-control">
+                    <option value="" selected="Selecione..."></option>
+                    {% for cat in listCategoria %}
+                        <option value="{{ cat.id }}">{{ cat.txtCategoria }}</option>
+                    {% endfor %}
+                </select>
+        </div>
+
+
+        <div id="showSubcategorias"></div>
+
+
+        <div id="divTextArea">
+            <textarea name="txtProblema" cols="10", rows="10"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-default">Salvar</button>
+    </div>
+</form>
+{% endblock conteudo %}

@@ -1,6 +1,6 @@
 from ..database import db
-from ..user.models.userModels import User
-from ..blueprints.loginRouts import login_bp
+from ..models.userModel import User
+from ..blueprints.loginRout import login_bp
 from flask_login import login_user, logout_user
 from flask import render_template, request, redirect, url_for
 
@@ -33,7 +33,8 @@ class loginController:
                 return redirect(url_for('login.login'))        
 
             login_user(user)
-            return redirect(url_for('user.listUsers')) 
+            return redirect('/home')
+            #return redirect(url_for('user.listUsers')) 
         else:
             return render_template('login.html')
 
@@ -41,3 +42,7 @@ class loginController:
     def logout():
         logout_user()
         return redirect(url_for('login.login'))
+
+    @login_bp.route('/home')
+    def home():
+        return render_template('home.html')

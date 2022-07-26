@@ -1,0 +1,10 @@
+<div class="form-group">
+    <!-- <label>Select Sub Category</label> -->
+    <span class="input-group-addon">Subcategoria: </span>
+    <select name="subcategoria"  id="subcategoria" class="selectpicker form-control">
+       <option value="" selected="Selecione..."></option>
+        {% for row in listSubcategoria %} 
+            <option value="{{row.id}}">{{row.txtSubcategoria}}</option>
+        {% endfor %}
+    </select> 
+</div>
