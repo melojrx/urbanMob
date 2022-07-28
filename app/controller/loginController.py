@@ -34,7 +34,6 @@ class loginController:
 
             login_user(user)
             return redirect('/home')
-            #return redirect(url_for('user.listUsers')) 
         else:
             return render_template('login.html')
 

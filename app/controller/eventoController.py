@@ -1,4 +1,6 @@
 import datetime
+
+from flask_login import current_user
 from ..database import db
 from ..enum import statusEventoEnum
 from ..models.eventoModel import Evento
@@ -23,12 +25,17 @@ class eventoController:
         dataInicio = datetime.datetime.now()
 
         evento = Evento(subcategoriaSelect, txtProblema, dataInicio)
-        eventoHistorico= EventoHistorico(evento, statusEventoEnum.StatusEventoEnum.STATUS_1, dataInicio)
+        eventoHistorico= EventoHistorico(evento, statusEventoEnum.StatusEventoEnum.STATUS_1.value, current_user.id, dataInicio)
 
         db.session.add(eventoHistorico)
         db.session.commit()
 
         return redirect(url_for('evento.iniciar'))
+
+    @evento_bp.route('/listar', methods=['GET', 'POST'])
+    def listar():
+        listEvento = Evento.query.all()
+        return render_template('listarEventos.html', listEvento=listEvento)
 
     # https://tutorial101.blogspot.com/2021/01/python-flask-dynamic-loading-of.html
     @evento_bp.route("/loadSubcategoria",methods=["POST","GET"])

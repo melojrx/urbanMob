@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block conteudo %}
+
+<body>
+
+    {% for evento in listEvento %}
+        <ol>{{evento.txtProblema}}</ol>
+        {% for eventoHistorico in evento.listEventoHistorico %}
+            <li>{{eventoHistorico.statusEvento.txtStatusEvento}}</li>
+        {%endfor%}
+    {%endfor%}  
+    
+</body>
+
+
+{% endblock conteudo %}        

@@ -104,12 +104,14 @@ CREATE TABLE cidade.tb_evento_historico_ehi (
 	id_evento_historico_ehi integer NOT NULL DEFAULT nextval('cidade.evento_historico_seq'::regclass),
   id_evento_ehi integer NOT NULL,
 	id_status_evento_ehi integer NOT NULL,
+  id_usuario_ehi integer NOT NULL,
 	dat_inicio_ehi timestamp without time zone NOT null default now(),
 	dat_fim_ehi timestamp without time zone default null,
 	CONSTRAINT evento_historico_pkey PRIMARY KEY (id_evento_historico_ehi)
 );
 ALTER TABLE cidade.tb_evento_historico_ehi ADD CONSTRAINT evento_fkey FOREIGN KEY (id_evento_ehi) REFERENCES cidade.tb_evento_eve (id_evento_eve);
 ALTER TABLE cidade.tb_evento_historico_ehi ADD CONSTRAINT status_fkey FOREIGN KEY (id_status_evento_ehi) REFERENCES cidade.tb_status_evento_sev (id_status_evento_sev);
+ALTER TABLE cidade.tb_evento_historico_ehi ADD CONSTRAINT usuario_fkey FOREIGN KEY (id_usuario_ehi) REFERENCES cidade.tb_usuario_usu (id_usuario_usu);
 
 -- ####################################
 -- #        INSERTS PARA TESTES       #
