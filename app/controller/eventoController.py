@@ -1,11 +1,11 @@
 import datetime
 from ..database import db
-from sqlalchemy import null
-from sqlalchemy import insert
+from ..enum import statusEventoEnum
 from ..models.eventoModel import Evento
 from ..models.categoriaModel import Categoria
 from ..models.subcategoriaModel import Subcategoria
-from ..blueprints.eventoRout import evento_bp
+from app.models.eventoHistoricoModel import EventoHistorico
+from ..rotas.eventoRout import evento_bp
 from flask import jsonify, render_template, request, redirect, session, url_for
 
 class eventoController:
@@ -22,12 +22,10 @@ class eventoController:
         txtProblema = request.form['txtProblema']
         dataInicio = datetime.datetime.now()
 
-        # values = {"id_subcategoria_eve": subcategoriaSelect, "txt_problema_eve": txtProblema, "dat_inicio_eve": dataInicio}
-        #db.session.execute(Evento.__table__.insert().values(values))
-        # db.session.commit()
-
         evento = Evento(subcategoriaSelect, txtProblema, dataInicio)
-        db.session.add(evento)
+        eventoHistorico= EventoHistorico(evento, statusEventoEnum.StatusEventoEnum.STATUS_1, dataInicio)
+
+        db.session.add(eventoHistorico)
         db.session.commit()
 
         return redirect(url_for('evento.iniciar'))

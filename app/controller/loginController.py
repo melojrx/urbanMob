@@ -1,6 +1,6 @@
 from ..database import db
 from ..models.userModel import User
-from ..blueprints.loginRout import login_bp
+from ..rotas.loginRout import login_bp
 from flask_login import login_user, logout_user
 from flask import render_template, request, redirect, url_for
 

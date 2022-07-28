@@ -1,8 +1,3 @@
-from msilib import schema
-
-from sqlalchemy import false, insert
-
-from app.models.subcategoriaModel import Subcategoria
 from ..database import db
 
 class Evento(db.Model):
@@ -15,8 +10,6 @@ class Evento(db.Model):
     dataFim = db.Column('dat_fim_eve', db.DateTime, nullable=True)
 
     idSubcategoria = db.Column('id_subcategoria_eve',db.Integer, db.ForeignKey('cidade.tb_subcategoria_sub.id_subcategoria_sub'), nullable=False)
-    #subcategoria = db.relationship("Subcategoria")
-    #subcategoria = db.relationship(Subcategoria, primaryjoin=idSubcategoria == Subcategoria.id)
     
     def __init__(self, idSubcategoria, txtProblema, dataInicio):
         self.idSubcategoria = idSubcategoria

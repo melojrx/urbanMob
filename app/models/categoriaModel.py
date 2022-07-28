@@ -1,4 +1,3 @@
-from sqlalchemy import null
 from ..database import db
 
 class Categoria(db.Model):

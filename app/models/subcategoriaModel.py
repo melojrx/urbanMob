@@ -1,4 +1,3 @@
-from app.models.categoriaModel import Categoria
 from ..database import db
 
 class Subcategoria(db.Model):

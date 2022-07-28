@@ -105,7 +105,7 @@ CREATE TABLE cidade.tb_evento_historico_ehi (
   id_evento_ehi integer NOT NULL,
 	id_status_evento_ehi integer NOT NULL,
 	dat_inicio_ehi timestamp without time zone NOT null default now(),
-	dat_fim_eehi timestamp without time zone default null,
+	dat_fim_ehi timestamp without time zone default null,
 	CONSTRAINT evento_historico_pkey PRIMARY KEY (id_evento_historico_ehi)
 );
 ALTER TABLE cidade.tb_evento_historico_ehi ADD CONSTRAINT evento_fkey FOREIGN KEY (id_evento_ehi) REFERENCES cidade.tb_evento_eve (id_evento_eve);
