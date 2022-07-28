@@ -22,9 +22,12 @@ class eventoController:
         txtProblema = request.form['txtProblema']
         dataInicio = datetime.datetime.now()
 
-        values = {"id_subcategoria_eve": subcategoriaSelect, "txt_problema_eve": txtProblema, "dat_inicio_eve": dataInicio}
-        
-        db.session.execute(Evento.__table__.insert().values(values))
+        # values = {"id_subcategoria_eve": subcategoriaSelect, "txt_problema_eve": txtProblema, "dat_inicio_eve": dataInicio}
+        #db.session.execute(Evento.__table__.insert().values(values))
+        # db.session.commit()
+
+        evento = Evento(subcategoriaSelect, txtProblema, dataInicio)
+        db.session.add(evento)
         db.session.commit()
 
         return redirect(url_for('evento.iniciar'))

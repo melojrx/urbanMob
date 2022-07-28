@@ -1,3 +1,4 @@
+from app.models.categoriaModel import Categoria
 from ..database import db
 
 class Subcategoria(db.Model):
@@ -5,14 +6,8 @@ class Subcategoria(db.Model):
     __table_args__ = {"schema":"cidade"}
     
     id = db.Column('id_subcategoria_sub', db.Integer, autoincrement=True, primary_key=True)
-    idCategoria = db.Column('id_categoria_sub',db.Integer, db.ForeignKey('categoria.id'), nullable=False)
     txtSubcategoria = db.Column('txt_subcategoria_sub', db.String(50), nullable=False)
     dataInicio = db.Column('dat_inicio_sub', db.DateTime, nullable=False)
     dataFim = db.Column('dat_fim_sub', db.DateTime, nullable=True)
 
-
-    def __init__(self, idCategoria, txtSubcategoria, dataInicio, dataFim):
-        self.idCategoria = idCategoria
-        self.txtSubcategoria = txtSubcategoria
-        self.dataInicio = dataInicio
-        self.dataFim = dataFim
+    idCategoria = db.Column('id_categoria_sub',db.Integer, db.ForeignKey('cidade.tb_categoria_cat.id_categoria_cat'), nullable=False)
