@@ -94,6 +94,7 @@ CREATE TABLE cidade.tb_evento_eve (
 	id_evento_eve integer NOT NULL DEFAULT nextval('cidade.evento_seq'::regclass),
   id_subcategoria_eve integer NOT NULL,
 	txt_problema_eve varchar(1000) NOT NULL,
+  txt_endereco_eve varchar(200) NOT NULL,
 	dat_inicio_eve timestamp without time zone NOT null default now(),
 	dat_fim_eve timestamp without time zone default null,
 	CONSTRAINT evento_pkey PRIMARY KEY (id_evento_eve)

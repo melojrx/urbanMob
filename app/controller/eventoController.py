@@ -22,9 +22,10 @@ class eventoController:
 
         subcategoriaSelect = request.form['subcategoria']
         txtProblema = request.form['txtProblema']
+        txtEndereco = request.form['txtEndereco']
         dataInicio = datetime.datetime.now()
 
-        evento = Evento(subcategoriaSelect, txtProblema, dataInicio)
+        evento = Evento(subcategoriaSelect, txtProblema, txtEndereco, dataInicio)
         eventoHistorico= EventoHistorico(evento, statusEventoEnum.StatusEventoEnum.STATUS_1.value, current_user.id, dataInicio)
 
         db.session.add(eventoHistorico)
